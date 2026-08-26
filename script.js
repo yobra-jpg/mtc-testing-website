@@ -179,9 +179,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ---- Intake Countdown ----
-// Set target date: 27 September 2026 (adjust when college confirms real date)
+// Set target date: 6 September 2026 (adjust when college confirms real date)
 (function () {
-    const target = new Date('2026-09-27T08:00:00+03:00').getTime();
+    const target = new Date('2026-09-6T08:00:00+03:00').getTime();
     const daysEl = document.getElementById('cd-days');
     const hoursEl = document.getElementById('cd-hours');
     const minsEl = document.getElementById('cd-mins');
