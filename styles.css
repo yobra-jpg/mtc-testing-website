@@ -1935,3 +1935,675 @@ img, video, iframe { max-width: 100%; height: auto; }
     .hero-bg .hero-image { transform: none !important; }
     .journey .journey-step .step-icon::after { animation: none; display: none; }
 }
+
+/* =========================================================
+   MERCYLIFE HERO + SLIDESHOW + ABOUT
+   Isolated styles - intentionally namespaced
+   ========================================================= */
+
+
+/* =========================================================
+   HERO SECTION
+   ========================================================= */
+
+#hero {
+    position: relative;
+    width: 100%;
+    min-height: 620px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    isolation: isolate;
+    background: #063b63;
+}
+
+/* Background/banner image */
+#hero .banner-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -2;
+    animation: mercylifeHeroZoom 14s ease-in-out infinite alternate;
+}
+
+/* Dark overlay */
+#hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 49, 88, 0.88),
+            rgba(0, 102, 153, 0.55),
+            rgba(0, 0, 0, 0.55)
+        );
+    z-index: -1;
+}
+
+/* Hero content */
+#hero .hero-content {
+    position: relative;
+    z-index: 2;
+    width: min(900px, 90%);
+    margin: 0 auto;
+    padding: 70px 20px;
+    text-align: center;
+    color: #ffffff;
+
+    animation: mercylifeHeroContent 1.2s ease-out both;
+}
+
+/* Hide the actual banner image visually because it is
+   being used as the animated hero background */
+#hero .hero-content .banner-image {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Hero heading */
+#hero .hero-content h1 {
+    margin: 0 auto 20px;
+    max-width: 850px;
+
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    line-height: 1.08;
+    font-weight: 800;
+    letter-spacing: -1px;
+
+    text-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.45);
+
+    animation: mercylifeHeroTitle 1s 0.2s ease-out both;
+}
+
+/* Hero subtitle */
+#hero .hero-content p {
+    margin: 0 auto 32px;
+    max-width: 700px;
+
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.94);
+
+    animation: mercylifeHeroSubtitle 1s 0.45s ease-out both;
+}
+
+/* Apply Now button */
+#hero .hero-content a.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 160px;
+    padding: 14px 30px;
+
+    border: 2px solid #ffffff;
+    border-radius: 50px;
+
+    background: #ffffff;
+    color: #07558a;
+
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease;
+
+    animation: mercylifeHeroButton 1s 0.7s ease-out both;
+}
+
+#hero .hero-content a.btn:hover {
+    transform: translateY(-5px) scale(1.03);
+
+    background: #07558a;
+    color: #ffffff;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.35);
+}
+
+#hero .hero-content a.btn:active {
+    transform: translateY(-1px) scale(0.99);
+}
+
+
+/* =========================================================
+   HERO ANIMATIONS
+   ========================================================= */
+
+@keyframes mercylifeHeroZoom {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.08);
+    }
+}
+
+@keyframes mercylifeHeroContent {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes mercylifeHeroTitle {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes mercylifeHeroSubtitle {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes mercylifeHeroButton {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   SLIDESHOW
+   ========================================================= */
+
+.slideshow-container {
+    position: relative;
+    width: min(1200px, 94%);
+    margin: 50px auto 15px;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background: #f2f6f9;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.15);
+
+    isolation: isolate;
+}
+
+/* Individual slides */
+.slideshow-container .mySlides {
+    display: none;
+    position: relative;
+
+    width: 100%;
+}
+
+/* Images */
+.slideshow-container .mySlides img {
+    display: block;
+
+    width: 100%;
+    height: 520px;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Dark gradient at bottom */
+.slideshow-container .mySlides::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 35%;
+
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.4),
+        transparent
+    );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   SLIDESHOW FADE
+   ========================================================= */
+
+.slideshow-container .fade {
+    animation: mercylifeSlideFade 0.8s ease-in-out;
+}
+
+@keyframes mercylifeSlideFade {
+    from {
+        opacity: 0.35;
+        transform: scale(1.015);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* =========================================================
+   SLIDESHOW ARROWS
+   ========================================================= */
+
+.slideshow-container .prev,
+.slideshow-container .next {
+    position: absolute;
+    top: 50%;
+
+    width: 48px;
+    height: 48px;
+
+    margin-top: -24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(0, 65, 105, 0.72);
+    color: #ffffff;
+
+    font-size: 24px;
+    font-weight: bold;
+
+    cursor: pointer;
+    user-select: none;
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+    z-index: 5;
+}
+
+.slideshow-container .prev {
+    left: 20px;
+}
+
+.slideshow-container .next {
+    right: 20px;
+}
+
+.slideshow-container .prev:hover,
+.slideshow-container .next:hover {
+    background: #0878b5;
+
+    transform: scale(1.1);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+/* =========================================================
+   SLIDESHOW DOTS
+   ========================================================= */
+
+/*
+   IMPORTANT:
+   The dots are outside .slideshow-container in your HTML,
+   so we use a very specific selector based on their
+   immediate structure.
+*/
+
+.slideshow-container + div[style*="text-align:center"] {
+    width: 100%;
+    margin: 15px auto 40px;
+
+    text-align: center !important;
+}
+
+/* Individual dots */
+.slideshow-container + div[style*="text-align:center"] .dot {
+    display: inline-block;
+
+    width: 10px;
+    height: 10px;
+
+    margin: 0 5px;
+
+    border-radius: 50%;
+
+    background: #b8c6d1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.slideshow-container + div[style*="text-align:center"] .dot:hover {
+    background: #0878b5;
+
+    transform: scale(1.3);
+}
+
+
+/* =========================================================
+   ABOUT SECTION
+   ========================================================= */
+
+#about {
+    position: relative;
+
+    width: min(1150px, 92%);
+
+    margin: 70px auto;
+
+    padding: 55px;
+
+    background: #ffffff;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.08);
+
+    overflow: hidden;
+}
+
+/* Decorative left border */
+#about::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 6px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #07558a,
+            #13a4d8
+        );
+
+    border-radius: 22px 0 0 22px;
+}
+
+/* About heading */
+#about > h2 {
+    margin: 0 0 25px;
+
+    color: #07558a;
+
+    font-size: clamp(2rem, 4vw, 3rem);
+
+    line-height: 1.15;
+
+    font-weight: 800;
+}
+
+/* About paragraphs */
+#about > p {
+    margin: 0 0 18px;
+
+    color: #4b5563;
+
+    font-size: 1.05rem;
+
+    line-height: 1.85;
+}
+
+/* Hospital name */
+#about > p strong {
+    color: #07558a;
+}
+
+
+/* =========================================================
+   ABOUT SUBHEADINGS
+   ========================================================= */
+
+#about > h3 {
+    position: relative;
+
+    margin: 45px 0 20px;
+
+    padding-left: 16px;
+
+    color: #07558a;
+
+    font-size: 1.5rem;
+
+    font-weight: 750;
+}
+
+#about > h3::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 4px;
+    bottom: 4px;
+
+    width: 4px;
+
+    border-radius: 5px;
+
+    background: #13a4d8;
+}
+
+
+/* =========================================================
+   CORE VALUES
+   ========================================================= */
+
+/*
+   Your current HTML uses individual <p> elements for
+   the values. This styles only paragraphs that come
+   immediately after the Core Values heading.
+*/
+
+#about > h3:first-of-type ~ p {
+    position: relative;
+}
+
+
+/* =========================================================
+   MISSION + VISION
+   ========================================================= */
+
+#about > h3:nth-of-type(2) + p,
+#about > h3:nth-of-type(3) + p {
+    padding: 24px 28px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f5faff,
+            #eef8fc
+        );
+
+    border: 1px solid rgba(7, 85, 138, 0.08);
+
+    color: #374151;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    #hero {
+        min-height: 560px;
+    }
+
+    #hero .hero-content {
+        padding: 60px 20px;
+    }
+
+    .slideshow-container .mySlides img {
+        height: 430px;
+    }
+
+    #about {
+        padding: 40px 30px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    #hero {
+        min-height: 520px;
+    }
+
+    #hero .hero-content {
+        width: 92%;
+        padding: 50px 15px;
+    }
+
+    #hero .hero-content h1 {
+        font-size: 2.15rem;
+        letter-spacing: -0.5px;
+    }
+
+    #hero .hero-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    #hero .hero-content a.btn {
+        min-width: 145px;
+        padding: 12px 24px;
+    }
+
+    .slideshow-container {
+        width: 94%;
+        margin-top: 30px;
+
+        border-radius: 12px;
+    }
+
+    .slideshow-container .mySlides img {
+        height: 280px;
+    }
+
+    .slideshow-container .prev,
+    .slideshow-container .next {
+        width: 40px;
+        height: 40px;
+
+        margin-top: -20px;
+
+        font-size: 19px;
+    }
+
+    .slideshow-container .prev {
+        left: 10px;
+    }
+
+    .slideshow-container .next {
+        right: 10px;
+    }
+
+    #about {
+        width: 92%;
+
+        margin: 45px auto;
+
+        padding: 32px 24px;
+
+        border-radius: 16px;
+    }
+
+    #about > h2 {
+        font-size: 2rem;
+    }
+
+    #about > p {
+        font-size: 0.98rem;
+        line-height: 1.75;
+    }
+
+    #about > h3 {
+        font-size: 1.3rem;
+    }
+
+    #about > h3:nth-of-type(2) + p,
+    #about > h3:nth-of-type(3) + p {
+        padding: 20px;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    #hero .banner-image,
+    #hero .hero-content,
+    #hero .hero-content h1,
+    #hero .hero-content p,
+    #hero .hero-content a.btn,
+    .slideshow-container .fade {
+        animation: none !important;
+    }
+
+    #hero .hero-content a.btn,
+    .slideshow-container .prev,
+    .slideshow-container .next,
+    .slideshow-container + div[style*="text-align:center"] .dot {
+        transition: none !important;
+    }
+}
