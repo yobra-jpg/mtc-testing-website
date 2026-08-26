@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yobra-jpg.github.io/mercylife-training-college/sitemap.xml
